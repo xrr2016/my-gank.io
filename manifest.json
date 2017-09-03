@@ -12,13 +12,13 @@
     "128": "images/128.png"
   },
   "browser_action": {
-    
+    ""
   },
-  "permissions": [
-    "tabs",
-    "topSites"
-  ],
-  "background": {
-    "persistent": false
-  }
+  // "permissions": [
+  //   "tabs",
+  //   "topSites"
+  // ],
+  // "background": {
+  //   "persistent": false
+  // }
 }
