@@ -1,107 +1,73 @@
 import { h, Component } from 'preact'
 import { route } from 'preact-router'
 import Toolbar from 'preact-material-components/Toolbar'
-import Drawer from 'preact-material-components/Drawer'
-import List from 'preact-material-components/List'
+import Icon from 'preact-material-components/Icon'
 import Dialog from 'preact-material-components/Dialog'
-import Switch from 'preact-material-components/Switch'
-import 'preact-material-components/Switch/style.css'
-import 'preact-material-components/Dialog/style.css'
-import 'preact-material-components/Drawer/style.css'
-import 'preact-material-components/List/style.css'
-import 'preact-material-components/Toolbar/style.css'
+import Button from 'preact-material-components/Button'
+import Textfield from 'preact-material-components/Textfield'
+import Tabs from 'preact-material-components/Tabs'
+import { getPathName } from '../../utils'
 import style from './style'
 
 export default class Header extends Component {
-  closeDrawer() {
-    this.drawer.MDComponent.open = false
-    this.state = {
-      darkThemeEnabled: false
-    }
+  state = {
+    query: ''
   }
+
+  openDialog = () => this.searchDialog.MDComponent.show()
+  onChange = e => this.setState({ query: e.target.value })
+
   render() {
     return (
       <div>
-        <Toolbar className="toolbar" fixed>
+        <Toolbar fixed>
           <Toolbar.Row>
-            <Toolbar.Section align-start={true}>
-              <Toolbar.Icon
-                menu={true}
-                onClick={() => {
-                  this.drawer.MDComponent.open = true
-                }}
-              >
-                menu
-              </Toolbar.Icon>
-              <Toolbar.Title>干货集中营</Toolbar.Title>
+            <Toolbar.Section align-start>
+              <Toolbar.Title>GANK.ME</Toolbar.Title>
             </Toolbar.Section>
-            <Toolbar.Section
-              align-end={true}
-              onClick={() => {
-                this.dialog.MDComponent.show()
-              }}
-            >
-              <Toolbar.Icon>settings</Toolbar.Icon>
+            <Toolbar.Section align-end style={{ paddingRight: '15px' }}>
+              <Icon onClick={this.openDialog}>search</Icon>
             </Toolbar.Section>
           </Toolbar.Row>
+          <Tabs style={{ width: '100%' }}>
+            <Tabs.Tab
+              active={getPathName() === '/'}
+              onClick={() => route('/', true)}
+            >
+              最新
+            </Tabs.Tab>
+            <Tabs.Tab
+              active={getPathName() === '/category'}
+              onClick={() => route('/category', true)}
+            >
+              分类
+            </Tabs.Tab>
+            <Tabs.Tab
+              active={getPathName() === '/bouns'}
+              onClick={() => route('/bouns', true)}
+            >
+              福利
+            </Tabs.Tab>
+          </Tabs>
         </Toolbar>
-        <Drawer.TemporaryDrawer
-          ref={drawer => {
-            this.drawer = drawer
-          }}
-        >
-          <Drawer.TemporaryDrawerContent>
-            <List>
-              <List.LinkItem
-                onClick={() => {
-                  route('/')
-                  this.closeDrawer()
-                }}
-              >
-                <List.ItemIcon>home</List.ItemIcon>
-                Home
-              </List.LinkItem>
-              <List.LinkItem
-                onClick={() => {
-                  route('/profile')
-                  this.closeDrawer()
-                }}
-              >
-                <List.ItemIcon>account_circle</List.ItemIcon>
-                Profile
-              </List.LinkItem>
-            </List>
-          </Drawer.TemporaryDrawerContent>
-        </Drawer.TemporaryDrawer>
+
         <Dialog
-          ref={dialog => {
-            this.dialog = dialog
+          ref={searchDialog => {
+            this.searchDialog = searchDialog
           }}
         >
-          <Dialog.Header>设置</Dialog.Header>
+          <Dialog.Header>查询</Dialog.Header>
           <Dialog.Body>
-            <div>
-              Enable dark theme{' '}
-              <Switch
-                onClick={() => {
-                  this.setState(
-                    {
-                      darkThemeEnabled: !this.state.darkThemeEnabled
-                    },
-                    () => {
-                      if (this.state.darkThemeEnabled) {
-                        document.body.classList.add('mdc-theme--dark')
-                      } else {
-                        document.body.classList.remove('mdc-theme--dark')
-                      }
-                    }
-                  )
-                }}
-              />
-            </div>
+            <Textfield
+              label="找点什么"
+              fullwidth
+              onChange={this.onChange}
+              value={this.state.query}
+            />
           </Dialog.Body>
           <Dialog.Footer>
-            <Dialog.FooterButton accept={true}>确定</Dialog.FooterButton>
+            <Dialog.FooterButton cancel>取消</Dialog.FooterButton>
+            <Dialog.FooterButton accept>确定</Dialog.FooterButton>
           </Dialog.Footer>
         </Dialog>
       </div>

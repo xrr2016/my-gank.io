@@ -28,6 +28,7 @@
     "preact-material-components": "^1.2.2",
     "preact-redux": "^2.0.3",
     "preact-router": "^2.5.5",
+    "react-placeholder": "^1.0.7",
     "redux": "^3.7.2",
     "whatwg-fetch": "^2.0.3"
   }
