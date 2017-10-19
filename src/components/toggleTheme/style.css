@@ -1,0 +1,13 @@
+.toggle {
+  position: fixed;
+  bottom: 4%;
+  left: 4%;
+}
+.fab {
+  color: #fff;
+  background: #3f51b5;
+}
+.fabDark {
+  background: #fff;
+  color: #3f51b5;
+}

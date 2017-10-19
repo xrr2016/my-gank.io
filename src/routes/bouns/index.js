@@ -1,27 +1,16 @@
 import { h, Component } from 'preact'
+import { connect } from 'preact-redux'
 import Card from 'preact-material-components/Card'
-import ReactPlaceholder from 'react-placeholder'
 
-import Api from '../../api'
-import { Type } from '../../api'
+import { fetchBounsData } from '../../actions'
 
-export default class Bouns extends Component {
-  state = {
-    ready: false,
-    datas: []
-  }
-
+class Bouns extends Component {
   componentDidMount = () => {
-    const { page, count } = this.state
-    Api.category(Type.boon).then(res => {
-      this.setState({ datas: res.results, ready: true })
-    })
+    this.props.fetchBounsData()
   }
-
-  getMore = () => {}
 
   render() {
-    const { datas } = this.state
+    const { datas } = this.props
     return (
       <div className="margin-top-104px">
         {datas.length
@@ -30,8 +19,14 @@ export default class Bouns extends Component {
                 <Card.MediaItem src={data.url} x="3" />
               </Card>
             ))
-          : <ReactPlaceholder showLoadingAnimation type='media' rows={5} ready={this.state.ready} />}
+          : 'loading...'}
       </div>
     )
   }
 }
+
+const mapStateToProps = state => ({
+  datas: state.bouns
+})
+
+export default connect(mapStateToProps, { fetchBounsData })(Bouns)

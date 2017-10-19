@@ -1,4 +1,4 @@
-const BASEURL = 'http://gank.io/api'
+const BaseUrl = 'http://gank.io/api'
 
 export const Type = {
   all: 'all',
@@ -13,7 +13,7 @@ export const Type = {
 const Api = {
   // 随机数据：http://gank.io/api/random/data/分类/个数
   random: (Type = Type.all, num = 1) => {
-    return fetch(`${BASEURL}/random/${Type}/${num}`).then(res => {
+    return fetch(`${BaseUrl}/random/${Type}/${num}`).then(res => {
       return res.json()
     })
   },
@@ -23,20 +23,20 @@ const Api = {
     month = new Date().getMonth() + 1,
     day = new Date().getDate()
   ) => {
-    return fetch(`${BASEURL}/day/${year}/${month}/${day}`).then(res => {
+    return fetch(`${BaseUrl}/day/${year}/${month}/${day}`).then(res => {
       return res.json()
     })
   },
   // 分类数据: http://gank.io/api/data/数据类型/请求个数/第几页
   category: (Type = Type.all, num = 20, page = 1) => {
-    return fetch(`${BASEURL}/data/${Type}/${num}/${page}`).then(res => {
+    return fetch(`${BaseUrl}/data/${Type}/${num}/${page}`).then(res => {
       return res.json()
     })
   },
   // 支持提交干货到审核区:https://gank.io/api/add2gank 方式: POST
   submit: data => {
     if (!data) return
-    return fetch(`${BASEURL}/add2gank`, {
+    return fetch(`${BaseUrl}/add2gank`, {
       method: 'POST',
       body: new FormData(data)
     }).then(res => res.status)
@@ -44,10 +44,14 @@ const Api = {
   // 搜索 API
   search: (Type = Type.all, count = 10, page = 1) => {
     return fetch(
-      `${BASEURL}/search/query/listview/category/${Type}/count/${count}/page/${page}`
+      `${BaseUrl}/search/query/listview/category/${Type}/count/${count}/page/${page}`
     ).then(res => {
       return res.json()
     })
+  },
+  // 获取发过干货日期接口:
+  publishDates: () => {
+    return fetch(`${BaseUrl}/day/history`).then(res => res.json())
   }
 }
 

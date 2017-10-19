@@ -20,7 +20,8 @@
     "eslint": "^4.5.0",
     "eslint-config-synacor": "^1.1.0",
     "if-env": "^1.0.0",
-    "preact-cli": "^2.0.0"
+    "preact-cli": "^2.0.0",
+    "redux-devtools-extension": "^2.13.2"
   },
   "dependencies": {
     "preact": "^8.2.1",
@@ -30,6 +31,7 @@
     "preact-router": "^2.5.5",
     "react-placeholder": "^1.0.7",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "whatwg-fetch": "^2.0.3"
   }
 }
