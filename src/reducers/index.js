@@ -1,49 +1,58 @@
 import { combineReducers } from 'redux'
-import { LOAD_BOUNS,LOADED_BOUNS, LOAD_MORE_BOUNS } from '../actions/type'
+import {
+  LOAD_BOUNS,
+  LOADED_BOUNS,
+  LOAD_MORE_BOUNS,
+  LOADED_LATEST_DATA
+} from '../actions/type'
 
-function latest (state = [], action = {}) {
+function latest(state = [], action = {}) {
+  switch (action.type) {
+    case LOADED_LATEST_DATA:
+      return [...action.results]
+    default:
+      return state
+  }
+}
+function search(state = [], action = {}) {
   switch (action.type) {
     default:
       return state
   }
 }
-function search (state = [], action = {}) {
+function bouns(state = [], action = {}) {
+  switch (action.type) {
+    case LOADED_BOUNS:
+      return [...action.results]
+    default:
+      return state
+  }
+}
+function android(state = [], action = {}) {
   switch (action.type) {
     default:
       return state
   }
 }
-function bouns (state = [], action = {}) {
-  switch (action.type) {
-    case LOADED_BOUNS: return [...action.results]
-    default: return state
-  }
-}
-function android (state = [], action = {}) {
+function ios(state = [], action = {}) {
   switch (action.type) {
     default:
       return state
   }
 }
-function ios (state = [], action = {}) {
+function video(state = [], action = {}) {
   switch (action.type) {
     default:
       return state
   }
 }
-function video (state = [], action = {}) {
+function expand(state = [], action = {}) {
   switch (action.type) {
     default:
       return state
   }
 }
-function expand (state = [], action = {}) {
-  switch (action.type) {
-    default:
-      return state
-  }
-}
-function front_end (state = [], action = {}) {
+function front_end(state = [], action = {}) {
   switch (action.type) {
     default:
       return state

@@ -1,5 +1,6 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
+import LayoutGrid from 'preact-material-components/LayoutGrid'
 import Card from 'preact-material-components/Card'
 
 import { fetchBounsData } from '../../actions'
@@ -13,13 +14,19 @@ class Bouns extends Component {
     const { datas } = this.props
     return (
       <div className="margin-top-104px">
-        {datas.length
-          ? datas.map(data => (
-              <Card key={data._id}>
-                <Card.MediaItem src={data.url} x="3" />
-              </Card>
-            ))
-          : 'loading...'}
+        <LayoutGrid>
+          <LayoutGrid.Inner>
+            <LayoutGrid.Cell cols="12">
+              {datas.length
+                ? datas.map(data => (
+                    <Card key={data._id}>
+                      <Card.MediaItem src={data.url} x="3" />
+                    </Card>
+                  ))
+                : 'loading...'}
+            </LayoutGrid.Cell>
+          </LayoutGrid.Inner>
+        </LayoutGrid>
       </div>
     )
   }

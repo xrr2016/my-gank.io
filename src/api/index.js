@@ -50,7 +50,7 @@ const Api = {
     })
   },
   // 获取发过干货日期接口:
-  publishDates: () => {
+  publishedDates: () => {
     return fetch(`${BaseUrl}/day/history`).then(res => res.json())
   }
 }
