@@ -1,0 +1,11 @@
+.toolbar {
+  background: #4b6cb7;
+  background: -webkit-linear-gradient(to right, #182848, #4b6cb7);
+  background: linear-gradient(to right, #182848, #4b6cb7);
+}
+.icon {
+  padding-right: 15px;
+}
+.switch {
+  padding-left: 10px;
+}

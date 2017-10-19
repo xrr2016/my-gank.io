@@ -42,9 +42,9 @@ const Api = {
     }).then(res => res.status)
   },
   // 搜索 API
-  search: (Type = Type.all, count = 10, page = 1) => {
+  search: (type = Type.all, count = 20, page = 1) => {
     return fetch(
-      `${BaseUrl}/search/query/listview/category/${Type}/count/${count}/page/${page}`
+      `${BaseUrl}/search/query/listview/category/${type}/count/${count}/page/${page}`
     ).then(res => {
       return res.json()
     })

@@ -1,6 +1,12 @@
 import Api from '../api'
 import { Type } from '../api'
-import { LOADED_BOUNS, LOAD_MORE_BOUNS, LOADED_LATEST_DATA } from './type'
+import {
+  LOADED_BOUNS,
+  LOAD_MORE_BOUNS,
+  LOADED_LATEST_DATA,
+  LOAD_SEARCH_DATA,
+  TOGGLE_THEME
+} from './type'
 // 获取福利数据
 export const fetchBounsData = () => {
   return dispatch => {
@@ -41,5 +47,28 @@ export const fetchLatestData = () => {
           dispatch(loadedLatestData(data.results))
         )
       })
+  }
+}
+// 查询数据
+export const fetchSearchData = () => {
+  return dispatch => {
+    return Api.search().then(data => {
+      dispatch(loadedSearchData(data.results))
+    })
+  }
+}
+
+export const loadedSearchData = results => {
+  return {
+    type: LOAD_SEARCH_DATA,
+    results
+  }
+}
+// 切换主题
+export const toggleTheme = theme => {
+  localStorage.setItem('theme', theme)
+  return {
+    type: TOGGLE_THEME,
+    theme
   }
 }

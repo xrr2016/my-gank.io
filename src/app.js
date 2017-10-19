@@ -1,23 +1,19 @@
 import { h, Component } from 'preact'
 import { Router } from 'preact-router'
 
-import Header from './components/header'
-import ToggleTheme from './components/toggleTheme'
-import Home from './routes/home'
-import Category from './routes/category'
-import Bouns from './routes/bouns'
+import Index from './routes/index'
+import Search from './routes/search'
+import Collection from './routes/collection'
 
 export default class App extends Component {
   render() {
     return (
-      <div id="app" className="mdc-typography">
-        <Header />
+      <div id="app">
         <Router>
-          <Home path="/" default/>
-          <Category path="/category"/>
-          <Bouns path="/bouns"/>
+          <Index path="/" default/>
+          <Collection path="/collection" />
+          <Search path="/search" />
         </Router>
-        <ToggleTheme />
       </div>
     )
   }

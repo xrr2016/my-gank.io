@@ -3,7 +3,8 @@ import {
   LOAD_BOUNS,
   LOADED_BOUNS,
   LOAD_MORE_BOUNS,
-  LOADED_LATEST_DATA
+  LOADED_LATEST_DATA,
+  TOGGLE_THEME
 } from '../actions/type'
 
 function latest(state = [], action = {}) {
@@ -58,7 +59,14 @@ function front_end(state = [], action = {}) {
       return state
   }
 }
-
+function theme (state = "day", action = {}) {
+  switch (action.type) {
+    case TOGGLE_THEME:
+      return action.theme
+    default:
+      return state
+  }
+}
 export default combineReducers({
   latest,
   search,
@@ -67,5 +75,6 @@ export default combineReducers({
   ios,
   video,
   expand,
-  front_end
+  front_end,
+  theme
 })

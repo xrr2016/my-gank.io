@@ -1,76 +1,70 @@
 import { h, Component } from 'preact'
 import { route } from 'preact-router'
+import { connect } from 'preact-redux'
+import Menu from 'preact-material-components/Menu'
 import Toolbar from 'preact-material-components/Toolbar'
+import Switch from 'preact-material-components/Switch'
 import Icon from 'preact-material-components/Icon'
-import Dialog from 'preact-material-components/Dialog'
-import Button from 'preact-material-components/Button'
-import Textfield from 'preact-material-components/Textfield'
 import Tabs from 'preact-material-components/Tabs'
-import { getPathName } from '../../utils'
+import { toggleTheme } from '../../actions'
 import style from './style'
 
-export default class Header extends Component {
-  state = {
-    query: ''
+class Header extends Component {
+  
+  toggleTheme = () => {
+    if (this.props.theme === 'day') {
+      this.props.toggleTheme('night')
+      document.body.classList.add('mdc-theme--dark')
+    } else {
+      this.props.toggleTheme('day')
+      document.body.classList.remove('mdc-theme--dark')
+    }
   }
-
-  openDialog = () => this.searchDialog.MDComponent.show()
-  onChange = e => this.setState({ query: e.target.value })
+  openMenu = e => (this.menu.MDComponent.open = true)
+  goSearchPage = () => route('/search', true)
 
   render() {
     return (
       <div>
-        <Toolbar fixed>
+        <Toolbar fixed className={style.toolbar}>
           <Toolbar.Row>
             <Toolbar.Section align-start>
               <Toolbar.Title>GANK.ME</Toolbar.Title>
             </Toolbar.Section>
-            <Toolbar.Section align-end style={{ paddingRight: '15px' }}>
-              <Icon onClick={this.openDialog}>search</Icon>
+            <Toolbar.Section align-end>
+              <Toolbar.Icon onClick={this.goSearchPage}>search</Toolbar.Icon>
+              <Toolbar.Icon onClick={this.openMenu}>more_vert</Toolbar.Icon>
+              <Menu.Anchor>
+                <Menu
+                  ref={menu => {
+                    this.menu = menu
+                  }}
+                >
+                  <Menu.Item onClick={this.goSearchPage}>我的收藏</Menu.Item>
+                  <Menu.Item>
+                    夜间主题
+                    <Switch
+                      className={style.switch}
+                      onChange={this.toggleTheme}
+                      checked={this.props.theme === 'night'}
+                    />
+                  </Menu.Item>
+                </Menu>
+              </Menu.Anchor>
             </Toolbar.Section>
           </Toolbar.Row>
           <Tabs style={{ width: '100%' }}>
-            <Tabs.Tab
-              active={getPathName() === '/'}
-              onClick={() => route('/', true)}
-            >
-              最新
-            </Tabs.Tab>
-            <Tabs.Tab
-              active={getPathName() === '/category'}
-              onClick={() => route('/category', true)}
-            >
-              分类
-            </Tabs.Tab>
-            <Tabs.Tab
-              active={getPathName() === '/bouns'}
-              onClick={() => route('/bouns', true)}
-            >
-              福利
-            </Tabs.Tab>
+            <Tabs.Tab>最新</Tabs.Tab>
+            <Tabs.Tab>分类</Tabs.Tab>
+            <Tabs.Tab>福利</Tabs.Tab>
           </Tabs>
         </Toolbar>
-
-        <Dialog
-          ref={searchDialog => {
-            this.searchDialog = searchDialog
-          }}
-        >
-          <Dialog.Header>查询</Dialog.Header>
-          <Dialog.Body>
-            <Textfield
-              label="找点什么"
-              fullwidth
-              onChange={this.onChange}
-              value={this.state.query}
-            />
-          </Dialog.Body>
-          <Dialog.Footer>
-            <Dialog.FooterButton cancel>取消</Dialog.FooterButton>
-            <Dialog.FooterButton accept>确定</Dialog.FooterButton>
-          </Dialog.Footer>
-        </Dialog>
       </div>
     )
   }
 }
+const mapStateToProps = state => ({
+  theme: state.theme
+})
+
+export default connect(mapStateToProps, { toggleTheme })(Header)

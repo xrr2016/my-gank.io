@@ -1,7 +1,9 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
+import LayoutGrid from 'preact-material-components/LayoutGrid'
 import { fetchLatestData } from '../../actions'
 import HomeCard from '../../components/homeCard'
+import PlaceHolder from '../../components/placeHolder'
 import style from './style'
 
 class Home extends Component {
@@ -21,11 +23,19 @@ class Home extends Component {
 
     return (
       <div className="margin-top-104px">
-        {items.length
-          ? items.map(item => (
-              <HomeCard key={item._id} openUrl={this.openUrl} {...item} />
-            ))
-          : 'loading...'}
+        <LayoutGrid>
+          <LayoutGrid.Inner>
+            <LayoutGrid.Cell cols="12">
+              {items.length
+                ? items.map(item => (
+                    <HomeCard key={item._id} openUrl={this.openUrl} {...item} />
+                  ))
+                : Array(10)
+                    .fill(0)
+                    .map(() => <PlaceHolder  img={true}/>)}
+            </LayoutGrid.Cell>
+          </LayoutGrid.Inner>
+        </LayoutGrid>
       </div>
     )
   }
