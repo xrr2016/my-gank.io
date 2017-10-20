@@ -10,7 +10,6 @@ import { toggleTheme } from '../../actions'
 import style from './style'
 
 class Header extends Component {
-  
   toggleTheme = () => {
     if (this.props.theme === 'day') {
       this.props.toggleTheme('night')
@@ -21,7 +20,7 @@ class Header extends Component {
     }
   }
   openMenu = e => (this.menu.MDComponent.open = true)
-  goSearchPage = () => route('/search', true)
+  route = path => route(path, true)
 
   render() {
     return (
@@ -29,10 +28,12 @@ class Header extends Component {
         <Toolbar fixed className={style.toolbar}>
           <Toolbar.Row>
             <Toolbar.Section align-start>
-              <Toolbar.Title>GANK.ME</Toolbar.Title>
+              <Toolbar.Title>干货集中营</Toolbar.Title>
             </Toolbar.Section>
             <Toolbar.Section align-end>
-              <Toolbar.Icon onClick={this.goSearchPage}>search</Toolbar.Icon>
+              <Toolbar.Icon onClick={() => this.route('/search')}>
+                search
+              </Toolbar.Icon>
               <Toolbar.Icon onClick={this.openMenu}>more_vert</Toolbar.Icon>
               <Menu.Anchor>
                 <Menu
@@ -40,7 +41,9 @@ class Header extends Component {
                     this.menu = menu
                   }}
                 >
-                  <Menu.Item onClick={this.goSearchPage}>我的收藏</Menu.Item>
+                  <Menu.Item onClick={() => this.route('/collection')}>
+                    我的收藏
+                  </Menu.Item>
                   <Menu.Item>
                     夜间主题
                     <Switch
@@ -54,9 +57,24 @@ class Header extends Component {
             </Toolbar.Section>
           </Toolbar.Row>
           <Tabs style={{ width: '100%' }}>
-            <Tabs.Tab>最新</Tabs.Tab>
-            <Tabs.Tab>分类</Tabs.Tab>
-            <Tabs.Tab>福利</Tabs.Tab>
+            <Tabs.Tab
+              active={location.pathname === '/home'}
+              onClick={() => this.route('/home')}
+            >
+              最新数据
+            </Tabs.Tab>
+            <Tabs.Tab
+              active={location.pathname === '/category'}
+              onClick={() => this.route('/category')}
+            >
+              分类数据
+            </Tabs.Tab>
+            <Tabs.Tab
+              active={location.pathname === '/bouns'}
+              onClick={() => this.route('/bouns')}
+            >
+              福利图片
+            </Tabs.Tab>
           </Tabs>
         </Toolbar>
       </div>

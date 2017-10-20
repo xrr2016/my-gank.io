@@ -1,5 +1,5 @@
 import 'preact-material-components/style.css'
-import 'mocka-placeholder/dist/mocka.min.css'
+import 'material-expansion-panel/dist/material-expansion-panel.min.css'
 import './style'
 import 'whatwg-fetch'
 import { toggleTheme } from './actions'

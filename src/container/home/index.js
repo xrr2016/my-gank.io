@@ -1,18 +1,16 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import LayoutGrid from 'preact-material-components/LayoutGrid'
 import { fetchLatestData } from '../../actions'
 import HomeCard from '../../components/homeCard'
-import PlaceHolder from '../../components/placeHolder'
-import style from './style'
 
 class Home extends Component {
   componentDidMount = () => {
+    if (this.props.latest.length) return
     this.props.fetchLatestData()
   }
 
   render() {
-    const obj = this.props.datas[0]
+    const obj = this.props.latest[0]
     const items = []
 
     for (let key in obj) {
@@ -22,27 +20,19 @@ class Home extends Component {
     }
 
     return (
-      <div className="margin-top-104px">
-        <LayoutGrid>
-          <LayoutGrid.Inner>
-            <LayoutGrid.Cell cols="12">
-              {items.length
-                ? items.map(item => (
-                    <HomeCard key={item._id} openUrl={this.openUrl} {...item} />
-                  ))
-                : Array(10)
-                    .fill(0)
-                    .map(() => <PlaceHolder  img={true}/>)}
-            </LayoutGrid.Cell>
-          </LayoutGrid.Inner>
-        </LayoutGrid>
+      <div className="index-home">
+        {items.length
+          ? items.map(item => (
+              <HomeCard key={item._id} openUrl={this.openUrl} {...item} />
+            ))
+          : 'loading...'}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  datas: state.latest
+  latest: state.latest
 })
 
 const mapDispatchToProps = {

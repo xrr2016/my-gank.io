@@ -5,8 +5,15 @@ import {
   LOAD_MORE_BOUNS,
   LOADED_LATEST_DATA,
   LOAD_SEARCH_DATA,
-  TOGGLE_THEME
+  TOGGLE_THEME,
+  LOADED_ANDROID_DATA,
+  LOADED_IOS_DATA,
+  LOADED_VIDEO_DATA,
+  LOADED_EXPAND_DATA,
+  LOADED_FRONTEND_DATA,
+  LOADED_RANDOM_DATA
 } from './type'
+
 // 获取福利数据
 export const fetchBounsData = () => {
   return dispatch => {
@@ -15,14 +22,12 @@ export const fetchBounsData = () => {
     })
   }
 }
-
 export const loadedBouns = results => {
   return {
     type: LOADED_BOUNS,
     results
   }
 }
-
 export const loadMoreBouns = () => {
   return {
     type: LOAD_MORE_BOUNS
@@ -35,7 +40,6 @@ export const loadedLatestData = results => {
     results
   }
 }
-
 export const fetchLatestData = () => {
   return dispatch => {
     Api.publishedDates()
@@ -49,7 +53,7 @@ export const fetchLatestData = () => {
       })
   }
 }
-// 查询数据
+// 获取查询数据
 export const fetchSearchData = () => {
   return dispatch => {
     return Api.search().then(data => {
@@ -57,7 +61,6 @@ export const fetchSearchData = () => {
     })
   }
 }
-
 export const loadedSearchData = results => {
   return {
     type: LOAD_SEARCH_DATA,
@@ -72,3 +75,89 @@ export const toggleTheme = theme => {
     theme
   }
 }
+// 获取 Android 数据
+export const loadedAndroidData = results => {
+  return {
+    type: LOADED_ANDROID_DATA,
+    results
+  }
+}
+export const fetchAndroidData = () => {
+  return dispatch => {
+    return Api.category(Type.android).then(data => {
+      dispatch(loadedAndroidData(data.results))
+    })
+  }
+}
+// 获取 iOS 数据
+export const loadedIOSData = results => {
+  return {
+    type: LOADED_IOS_DATA,
+    results
+  }
+}
+export const fetchIOSData = () => {
+  return dispatch => {
+    return Api.category(Type.ios).then(data => {
+      dispatch(loadedIOSData(data.results))
+    })
+  }
+}
+// 获取休息视频数据
+export const loadedVideoData = results => {
+  return {
+    type: LOADED_VIDEO_DATA,
+    results
+  }
+}
+export const fetchVideoData = () => {
+  return dispatch => {
+    return Api.category(Type.video).then(data => {
+      dispatch(loadedVideoData(data.results))
+    })
+  }
+}
+// 获取拓展资源数据
+export const loadedExpandData = results => {
+  return {
+    type: LOADED_EXPAND_DATA,
+    results
+  }
+}
+export const fetchExpandData = () => {
+  return dispatch => {
+    return Api.category(Type.expand).then(data => {
+      dispatch(loadedExpandData(data.results))
+    })
+  }
+}
+// 获取前端数据
+export const loadedFrontEndData = results => {
+  return {
+    type: LOADED_FRONTEND_DATA,
+    results
+  }
+}
+export const fetchFrontEndData = () => {
+  return dispatch => {
+    return Api.category(Type.front_end).then(data => {
+      dispatch(loadedFrontEndData(data.results))
+    })
+  }
+}
+// 获取随机数据
+export const loadedRandomData = results => {
+  return {
+    type: LOADED_RANDOM_DATA,
+    results
+  }
+}
+export const fetchRandomData = () => {
+  return dispatch => {
+    return Api.random(Type.all, 5).then(data => {
+      dispatch(loadedRandomData(data.results))
+    })
+  }
+}
+
+

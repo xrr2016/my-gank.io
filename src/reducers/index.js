@@ -4,7 +4,13 @@ import {
   LOADED_BOUNS,
   LOAD_MORE_BOUNS,
   LOADED_LATEST_DATA,
-  TOGGLE_THEME
+  TOGGLE_THEME,
+  LOADED_ANDROID_DATA,
+  LOADED_IOS_DATA,
+  LOADED_VIDEO_DATA,
+  LOADED_EXPAND_DATA,
+  LOADED_FRONTEND_DATA,
+  LOADED_RANDOM_DATA
 } from '../actions/type'
 
 function latest(state = [], action = {}) {
@@ -15,7 +21,7 @@ function latest(state = [], action = {}) {
       return state
   }
 }
-function search(state = [], action = {}) {
+function search_result(state = [], action = {}) {
   switch (action.type) {
     default:
       return state
@@ -31,35 +37,45 @@ function bouns(state = [], action = {}) {
 }
 function android(state = [], action = {}) {
   switch (action.type) {
+    case LOADED_ANDROID_DATA:
+      return action.results
     default:
       return state
   }
 }
 function ios(state = [], action = {}) {
   switch (action.type) {
+    case LOADED_IOS_DATA:
+      return action.results
     default:
       return state
   }
 }
 function video(state = [], action = {}) {
   switch (action.type) {
+    case LOADED_VIDEO_DATA:
+      return action.results
     default:
       return state
   }
 }
 function expand(state = [], action = {}) {
   switch (action.type) {
+    case LOADED_EXPAND_DATA:
+      return action.results
     default:
       return state
   }
 }
 function front_end(state = [], action = {}) {
   switch (action.type) {
+    case LOADED_FRONTEND_DATA:
+      return action.results
     default:
       return state
   }
 }
-function theme (state = "day", action = {}) {
+function theme(state = 'day', action = {}) {
   switch (action.type) {
     case TOGGLE_THEME:
       return action.theme
@@ -67,14 +83,30 @@ function theme (state = "day", action = {}) {
       return state
   }
 }
+function random(state = [], action = {}) {
+  switch (action.type) {
+    case LOADED_RANDOM_DATA:
+      return action.results
+    default:
+      return state
+  }
+}
+function collections(state = [], action = {}) {
+  switch (action.type) {
+    default:
+      return state
+  }
+}
 export default combineReducers({
   latest,
-  search,
   bouns,
   android,
   ios,
   video,
   expand,
   front_end,
-  theme
+  theme,
+  random,
+  collections,
+  search_result
 })

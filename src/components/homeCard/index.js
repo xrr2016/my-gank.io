@@ -3,6 +3,7 @@ import Card from 'preact-material-components/Card'
 import IconToggle from 'preact-material-components/IconToggle'
 
 const HomeCard = props => {
+  if (props.type === '福利') return ''
   let imgsrc = ''
   if (props.images) {
     imgsrc = `${props.images[0]}?imageView2/0/w/100`

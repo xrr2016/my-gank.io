@@ -1,14 +1,15 @@
-html, body {
-	height: 100%;
-	width: 100%;
-	padding: 0;
-	margin: 0;
-	background: #FAFAFA;
-	font-family: 'Helvetica Neue', arial, sans-serif;
-	font-weight: 400;
-	color: #444;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+html,
+body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: #f5f5f5;
+  font-family: 'Helvetica Neue', arial, sans-serif;
+  font-weight: 400;
+  color: #444;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* fallback */
@@ -16,7 +17,8 @@ html, body {
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialicons/v29/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2) format('woff2');
+  src: url(https://fonts.gstatic.com/s/materialicons/v29/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2)
+    format('woff2');
 }
 
 .material-icons {
@@ -36,7 +38,7 @@ html, body {
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #app {
@@ -45,8 +47,56 @@ html, body {
 
 .mdc-theme--dark {
   color: #fff;
-	background-color: #333;
+  background-color: #333;
 }
+.mdc-list {
+  padding: 0;
+  padding-left: 16px;
+  padding-right: 24px;
+}
+.mdc-list-item {
+  justify-content: space-between;
+  margin: 6px 0;
+}
+
 .margin-top-104px {
   margin-top: 104px;
+}
+.random-btn {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+}
+.expPanel .title .text {
+  margin-left: 0px;
+}
+.expPanel .panelContent {
+  padding: 12px 8px;
+}
+.expPanel .actionButtonBar {
+  border: none;
+  padding: 8px;
+}
+.expPanel.active .panelTitle {
+  background: #f5f5f5;
+}
+.panelExpanded .actionButtonBar button {
+  margin: 0px;
+  padding: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 2.25rem;
+  min-width: 88px;
+  height: 36px;
+  border: none;
+  outline: none;
+  text-align: center;
+  user-select: none;
+  -webkit-appearance: none;
+  border-radius: 2px;
+  background: transparent;
 }

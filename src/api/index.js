@@ -12,8 +12,8 @@ export const Type = {
 
 const Api = {
   // 随机数据：http://gank.io/api/random/data/分类/个数
-  random: (Type = Type.all, num = 1) => {
-    return fetch(`${BaseUrl}/random/${Type}/${num}`).then(res => {
+  random: (type = Type.all, num = 1) => {
+    return fetch(`${BaseUrl}/random/data/${type}/${num}`).then(res => {
       return res.json()
     })
   },
@@ -28,7 +28,7 @@ const Api = {
     })
   },
   // 分类数据: http://gank.io/api/data/数据类型/请求个数/第几页
-  category: (Type = Type.all, num = 20, page = 1) => {
+  category: (Type = Type.all, num = 10, page = 1) => {
     return fetch(`${BaseUrl}/data/${Type}/${num}/${page}`).then(res => {
       return res.json()
     })
