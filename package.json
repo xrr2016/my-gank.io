@@ -1,7 +1,7 @@
 {
-  "private": true,
-  "name": "preact-gank.io",
-  "version": "0.0.0",
+  "private": false,
+  "name": "@xrr2016/gank.io",
+  "version": "0.8.0",
   "license": "MIT",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run -s serve || npm run -s dev",

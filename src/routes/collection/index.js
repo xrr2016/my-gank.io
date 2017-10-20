@@ -8,9 +8,11 @@ import Menu from 'preact-material-components/Menu'
 import Button from 'preact-material-components/Button'
 import ReturnFab from '../../components/return'
 import { getCollections, removeCollection } from '../../actions'
-const w = document.getElementById('app').getBoundingClientRect().width - 64
+const w = document.getElementById('app').getBoundingClientRect().width
+const show = w <= 768
 
 class Collection extends Component {
+
   openMenu = e => (this.menu.MDComponent.open = true)
 
   componentDidMount() {
@@ -58,8 +60,8 @@ class Collection extends Component {
               ) : (
                 collections.map(item => {
                   let imgSrc = ''
-                  if (item.images) {
-                    imgSrc = `${item.images[0]}?imageView2/0/w/${w}`
+                  if (item.images && show) {
+                    imgSrc = `${item.images[0]}?imageView2/0/w/${w - 64}`
                   }
                   return (
                     <Card>

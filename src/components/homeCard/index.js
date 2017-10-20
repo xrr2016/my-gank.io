@@ -1,12 +1,13 @@
 import { h, Component } from 'preact'
 import { Card, Icon, Button } from 'preact-material-components'
-const w = document.getElementById('app').getBoundingClientRect().width - 64
+const w = document.getElementById('app').getBoundingClientRect().width
+const show = w <= 768
 
 const HomeCard = props => {
   if (props.type === '福利') return ''
   let imgsrc = ''
-  if (props.images) {
-    imgsrc = `${props.images[0]}?imageView2/0/w/${w}`
+  if (props.images && show) {
+    imgsrc = `${props.images[0]}?imageView2/0/w/${w - 64}`
   }
   const { desc, type, url, who, publishedAt, addCollect, item } = props
   
@@ -20,7 +21,7 @@ const HomeCard = props => {
           <span className="badge">{publishedAt.slice(0, 10)}</span>
         </Card.Subtitle>
       </Card.Primary>
-      {!!imgsrc && (
+      {!!imgsrc &&  (
         <Card.Media>
           <Card.MediaItem src={imgsrc} />
         </Card.Media>

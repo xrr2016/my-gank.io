@@ -107,25 +107,12 @@ body {
 .expPanel.active .panelTitle {
   background: transparent;
 }
-.panelExpanded .actionButtonBar button {
-  margin: 0px;
-  padding: 0;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  font-size: 0.875rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  line-height: 2.25rem;
-  min-width: 88px;
-  height: 36px;
+.expPanel .expIcon {
   border: none;
   outline: none;
-  text-align: center;
-  user-select: none;
-  -webkit-appearance: none;
-  border-radius: 2px;
   background: transparent;
 }
+
 .toolbar {
   background: #4b6cb7;
   background: -webkit-linear-gradient(to right, #182848, #4b6cb7);
