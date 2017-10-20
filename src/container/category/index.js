@@ -47,7 +47,7 @@ class Category extends Component {
     return (
       <div style={{ position: 'relative' }}>
         <ExpansionPanel title="Android" expandedTitle="Android">
-          <List two-line dense>
+          <List two-line>
             {android.length
               ? android.map(item => (
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
@@ -62,7 +62,7 @@ class Category extends Component {
         </ExpansionPanel>
 
         <ExpansionPanel title="iOS" expandedTitle="iOS">
-          <List two-line dense>
+          <List two-line>
             {ios.length
               ? ios.map(item => (
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
@@ -77,7 +77,7 @@ class Category extends Component {
         </ExpansionPanel>
 
         <ExpansionPanel title="休息视频" expandedTitle="休息视频">
-          <List two-line dense>
+          <List two-line>
             {video.length
               ? video.map(item => (
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
@@ -92,7 +92,7 @@ class Category extends Component {
         </ExpansionPanel>
 
         <ExpansionPanel title="拓展资源" expandedTitle="拓展资源">
-          <List two-line dense>
+          <List two-line>
             {video.length
               ? video.map(item => (
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
@@ -107,7 +107,7 @@ class Category extends Component {
         </ExpansionPanel>
 
         <ExpansionPanel title="前端" expandedTitle="前端">
-          <List two-line dense>
+          <List two-line>
             {front_end.length
               ? front_end.map(item => (
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
@@ -124,7 +124,7 @@ class Category extends Component {
           title="更多"
           expandedTitle="更多"
         >
-          <List two-line dense>
+          <List two-line>
             {random.length
               ? random.map(item => (
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>

@@ -1,11 +1,11 @@
 html,
 body {
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
   padding: 0;
   margin: 0;
-  background: #f5f5f5;
-  font-family: 'Helvetica Neue', arial, sans-serif;
+  background: #fafafa;
+  font-family: Roboto, 'Helvetica Neue', arial, sans-serif;
   font-weight: 400;
   color: #444;
   -webkit-font-smoothing: antialiased;
@@ -42,7 +42,7 @@ body {
 }
 
 #app {
-  height: 100%;
+  min-height: 100%;
 }
 
 .mdc-theme--dark {
@@ -68,6 +68,15 @@ body {
   left: 0;
   width: 100%;
 }
+.expPanel {
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, .2);
+  border: none;
+  margin: 2px 0;
+  background: transparent;
+}
+.expPanel .title {
+  color: inherit;
+}
 .expPanel .title .text {
   margin-left: 0px;
 }
@@ -79,7 +88,7 @@ body {
   padding: 8px;
 }
 .expPanel.active .panelTitle {
-  background: #f5f5f5;
+  background: transparent;
 }
 .panelExpanded .actionButtonBar button {
   margin: 0px;
@@ -99,4 +108,9 @@ body {
   -webkit-appearance: none;
   border-radius: 2px;
   background: transparent;
+}
+.toolbar {
+  background: #4b6cb7;
+  background: -webkit-linear-gradient(to right, #182848, #4b6cb7);
+  background: linear-gradient(to right, #182848, #4b6cb7);
 }
