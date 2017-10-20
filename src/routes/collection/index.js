@@ -3,6 +3,7 @@ import { connect } from 'preact-redux'
 import LayoutGrid from 'preact-material-components/LayoutGrid'
 import Toolbar from 'preact-material-components/Toolbar'
 import Icon from 'preact-material-components/Icon'
+import Card from 'preact-material-components/Card'
 import Fab from 'preact-material-components/Fab'
 
 class Collection extends Component {
@@ -12,13 +13,11 @@ class Collection extends Component {
         <Toolbar fixed className="toolbar">
           <Toolbar.Row>
             <Toolbar.Section align-start>
-              <Toolbar.Title>干货集中营</Toolbar.Title>
+              <Toolbar.Title>我的收藏</Toolbar.Title>
             </Toolbar.Section>
-            <Toolbar.Section align-end>
-              <Toolbar.Icon />
-            </Toolbar.Section>
+            <Toolbar.Icon>more_vert</Toolbar.Icon>
           </Toolbar.Row>
-          <Toolbar.Row />
+          <Toolbar.Row></Toolbar.Row>
         </Toolbar>
         <LayoutGrid>
           <LayoutGrid.Inner>

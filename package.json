@@ -31,6 +31,7 @@
     "preact-material-components": "^1.2.2",
     "preact-redux": "^2.0.3",
     "preact-router": "^2.5.5",
+    "react-content-loader": "^1.4.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
     "whatwg-fetch": "^2.0.3"

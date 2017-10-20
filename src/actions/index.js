@@ -15,9 +15,9 @@ import {
 } from './type'
 
 // 获取福利数据
-export const fetchBounsData = () => {
+export const fetchBounsData = (num) => {
   return dispatch => {
-    return Api.category(Type.boon).then(data => {
+    return Api.category(Type.boon, num).then(data => {
       dispatch(loadedBouns(data.results))
     })
   }

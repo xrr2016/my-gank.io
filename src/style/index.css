@@ -58,7 +58,18 @@ body {
   justify-content: space-between;
   margin: 6px 0;
 }
-
+.mdc-card__media {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.mdc-card__media-item {
+  margin: 0;
+  height: 160px;
+}
+.mdc-textfield__input {
+  color: #fff;
+  background: #182848;
+}
 .margin-top-104px {
   margin-top: 104px;
 }
@@ -67,6 +78,9 @@ body {
   bottom: -50px;
   left: 0;
   width: 100%;
+}
+.badge {
+  padding-right: 6px;
 }
 .expPanel {
   box-shadow: 0px 0px 1px rgba(0, 0, 0, .2);
@@ -113,4 +127,13 @@ body {
   background: #4b6cb7;
   background: -webkit-linear-gradient(to right, #182848, #4b6cb7);
   background: linear-gradient(to right, #182848, #4b6cb7);
+}
+.search-input {
+  color: #fff;
+}
+.desc {
+  position: absolute;
+  top: 2%;
+  right: 4%;
+  color: #fff;
 }

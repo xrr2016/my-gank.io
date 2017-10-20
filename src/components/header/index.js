@@ -52,6 +52,7 @@ class Header extends Component {
                       checked={this.props.theme === 'night'}
                     />
                   </Menu.Item>
+                  <Menu.Item onClick={() => window.open('https://github.com/xrr2016/my-gank.io')}>Github</Menu.Item>
                 </Menu>
               </Menu.Anchor>
             </Toolbar.Section>
