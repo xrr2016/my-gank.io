@@ -1,10 +1,13 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import { fetchLatestData } from '../../actions'
+import { fetchLatestData, addCollection } from '../../actions'
 import HomeCard from '../../components/homeCard'
 import ContentLoader from 'react-content-loader'
 
 class Home extends Component {
+
+  addCollect = item => this.props.addCollection(item)
+
   componentDidMount = () => {
     if (this.props.latest.length) return
     this.props.fetchLatestData()
@@ -22,7 +25,7 @@ class Home extends Component {
       <div>
         {items.length
           ? items.map(item => (
-              <HomeCard key={item._id} openUrl={this.openUrl} {...item} />
+              <HomeCard key={item._id} addCollect={this.addCollect} {...item} item={item}/>
             ))
           : Array(10)
               .fill(0)
@@ -39,7 +42,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = {
-  fetchLatestData
+  fetchLatestData,
+  addCollection
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

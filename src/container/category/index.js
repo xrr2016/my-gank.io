@@ -2,6 +2,7 @@ import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import { List, Icon, Button, Card } from 'preact-material-components'
 import ExpansionPanel from 'material-expansion-panel'
+import { addCollection } from '../../actions'
 
 import {
   fetchAndroidData,
@@ -20,7 +21,6 @@ const actionButtons = [
 ]
 
 class Category extends Component {
-  
   componentDidMount() {
     const { android, ios, video, expand, front_end } = this.props
     if (
@@ -53,7 +53,16 @@ class Category extends Component {
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
                     <List.TextContainer>
                       <List.PrimaryText>{item.desc}</List.PrimaryText>
-                      <List.SecondaryText>{item.who}</List.SecondaryText>
+                      <List.SecondaryText>
+                        {item.who}
+                        <Button
+                          style={{marginTop: -2}}
+                          ripple
+                          onClick={() => this.props.addCollection(item)}
+                        >
+                          收藏
+                        </Button>
+                      </List.SecondaryText>
                     </List.TextContainer>
                   </List.LinkItem>
                 ))
@@ -68,7 +77,13 @@ class Category extends Component {
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
                     <List.TextContainer>
                       <List.PrimaryText>{item.desc}</List.PrimaryText>
-                      <List.SecondaryText>{item.who}</List.SecondaryText>
+                      <List.SecondaryText>{item.who}<Button
+                          style={{marginTop: -2}}
+                          ripple
+                          onClick={() => this.props.addCollection(item)}
+                        >
+                          收藏
+                        </Button></List.SecondaryText>
                     </List.TextContainer>
                   </List.LinkItem>
                 ))
@@ -83,7 +98,13 @@ class Category extends Component {
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
                     <List.TextContainer>
                       <List.PrimaryText>{item.desc}</List.PrimaryText>
-                      <List.SecondaryText>{item.who}</List.SecondaryText>
+                      <List.SecondaryText>{item.who}<Button
+                          style={{marginTop: -2}}
+                          ripple
+                          onClick={() => this.props.addCollection(item)}
+                        >
+                          收藏
+                        </Button></List.SecondaryText>
                     </List.TextContainer>
                   </List.LinkItem>
                 ))
@@ -98,7 +119,13 @@ class Category extends Component {
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
                     <List.TextContainer>
                       <List.PrimaryText>{item.desc}</List.PrimaryText>
-                      <List.SecondaryText>{item.who}</List.SecondaryText>
+                      <List.SecondaryText>{item.who}<Button
+                          style={{marginTop: -2}}
+                          ripple
+                          onClick={() => this.props.addCollection(item)}
+                        >
+                          收藏
+                        </Button></List.SecondaryText>
                     </List.TextContainer>
                   </List.LinkItem>
                 ))
@@ -113,24 +140,33 @@ class Category extends Component {
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
                     <List.TextContainer>
                       <List.PrimaryText>{item.desc}</List.PrimaryText>
-                      <List.SecondaryText>{item.who}</List.SecondaryText>
+                      <List.SecondaryText>{item.who}<Button
+                          style={{marginTop: -2}}
+                          ripple
+                          onClick={() => this.props.addCollection(item)}
+                        >
+                          收藏
+                        </Button></List.SecondaryText>
                     </List.TextContainer>
                   </List.LinkItem>
                 ))
               : 'loading...'}
           </List>
         </ExpansionPanel>
-        <ExpansionPanel
-          title="更多"
-          expandedTitle="更多"
-        >
+        <ExpansionPanel title="更多" expandedTitle="更多">
           <List two-line>
             {random.length
               ? random.map(item => (
                   <List.LinkItem onClick={() => this.openUrl(item.url)}>
                     <List.TextContainer>
                       <List.PrimaryText>{item.desc}</List.PrimaryText>
-                      <List.SecondaryText>{item.who}</List.SecondaryText>
+                      <List.SecondaryText>{item.who}<Button
+                          style={{marginTop: -2}}
+                          ripple
+                          onClick={() => this.props.addCollection(item)}
+                        >
+                          收藏
+                        </Button></List.SecondaryText>
                     </List.TextContainer>
                   </List.LinkItem>
                 ))
@@ -160,6 +196,7 @@ const mapDispatchToProps = {
   fetchVideoData,
   fetchExpandData,
   fetchFrontEndData,
-  fetchRandomData
+  fetchRandomData,
+  addCollection
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Category)

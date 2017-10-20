@@ -1,22 +1,15 @@
 import { h, Component } from 'preact'
-import { Card, Icon, Snackbar, Button } from 'preact-material-components'
+import { Card, Icon, Button } from 'preact-material-components'
+const w = document.getElementById('app').getBoundingClientRect().width - 64
 
 const HomeCard = props => {
   if (props.type === '福利') return ''
   let imgsrc = ''
   if (props.images) {
-    imgsrc = `${props.images[0]}?imageView2/0/w/343`
+    imgsrc = `${props.images[0]}?imageView2/0/w/${w}`
   }
-
-  const { desc, type, url, who, publishedAt } = props
-  const toggleOnIcon = {
-    content: 'favorite',
-    label: 'Remove From Favorites'
-  }
-  const toggleOffIcon = {
-    content: 'favorite_border',
-    label: 'Add to Favorites'
-  }
+  const { desc, type, url, who, publishedAt, addCollect, item } = props
+  
   return (
     <Card style={{ marginBottom: 10 }}>
       <Card.Primary>
@@ -34,7 +27,7 @@ const HomeCard = props => {
       )}
       <Card.Actions>
         <Card.Action onClick={() => window.open(url)}>查看</Card.Action>
-        <Card.Action>收藏</Card.Action>
+        <Card.Action onClick={() => addCollect(item)}>收藏</Card.Action>
       </Card.Actions>
     </Card>
   )

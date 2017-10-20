@@ -8,7 +8,8 @@ import style from './style'
 
 class Bouns extends Component {
   state = {
-    index: 0
+    index: 0,
+    rect: document.getElementById('app').getBoundingClientRect()
   }
 
   prev = () => {
@@ -21,6 +22,7 @@ class Bouns extends Component {
       this.setState({ index: this.state.index - 1 })
     }
   }
+
   next = () => {
     if (this.state.index >= this.props.bouns.length - 1) {
       this.bar.MDComponent.show({
@@ -31,12 +33,22 @@ class Bouns extends Component {
       this.setState({ index: this.state.index + 1 })
     }
   }
+
+  computedWH = () => {
+    const rect = this.state.rect
+    return {
+      width: rect.width - 32,
+      height: Math.ceil(1350 / 1080 * rect.width)
+    }
+  }
+
   componentDidMount = () => {
     if (this.props.bouns.length) return
-    this.props.fetchBounsData(100)
+    this.props.fetchBounsData(50)
   }
 
   render() {
+    const { width, height } = this.computedWH()
     const { bouns } = this.props
     const { index } = this.state
     const item = bouns[index]
@@ -45,38 +57,32 @@ class Bouns extends Component {
         {item ? (
           <div style={{ position: 'relative' }}>
             <Card>
-              <Card.MediaItem src={item.url} style={{ height: 429 }} />
+              <Card.MediaItem src={item.url} style={{ height: height }} />
               <span className="desc">{item.desc}</span>
             </Card>
-            <Card.Actions>
-              <Card.Action>
-                <Button ripple onClick={this.prev}>
-                  上一张
-                </Button>
-              </Card.Action>
-              <Card.Action>
-                {' '}
-                <Button ipple raised href={item.url} download>
-                  下载
-                </Button>
-              </Card.Action>
-              <Card.Action>
-                {' '}
-                <Button ripple onClick={this.next}>
-                  下一张
-                </Button>
-              </Card.Action>
-              <Snackbar
-                ref={bar => {
-                  this.bar = bar
-                }}
-              />
+            <Card.Actions style={{ justifyContent: 'space-between' }}>
+              <Button ripple onClick={this.prev}>
+                上一张
+              </Button>
+              <Button ripple raised href={item.url} download>
+                下载
+              </Button>
+              <Button ripple onClick={this.next}>
+                下一张
+              </Button>
             </Card.Actions>
+            <Snackbar
+              ref={bar => {
+                this.bar = bar
+              }}
+            />
           </div>
         ) : (
-          <ContentLoader width={343} height={429}>
-            <Rect radius={5} width={343} height={429} />
-          </ContentLoader>
+          <div>
+            <ContentLoader width={width} height={height / 3 } type="facebook" />
+            <ContentLoader width={width} height={height / 3} type="facebook" />
+            <ContentLoader width={width} height={height / 3} type="facebook" />
+          </div>
         )}
       </div>
     )

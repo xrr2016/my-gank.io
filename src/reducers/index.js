@@ -10,7 +10,10 @@ import {
   LOADED_VIDEO_DATA,
   LOADED_EXPAND_DATA,
   LOADED_FRONTEND_DATA,
-  LOADED_RANDOM_DATA
+  LOADED_RANDOM_DATA,
+  ADD_COLLECTION,
+  REMOVE_COLLECTION,
+  GET_COLLECTIONS
 } from '../actions/type'
 
 function latest(state = [], action = {}) {
@@ -93,6 +96,14 @@ function random(state = [], action = {}) {
 }
 function collections(state = [], action = {}) {
   switch (action.type) {
+    case ADD_COLLECTION:
+      return [...state, action.item]
+    case REMOVE_COLLECTION:
+      const idx = state.findIndex(item => item._id === action.item._id)
+      state.splice(idx, 1)
+      return [...state]
+    case GET_COLLECTIONS:
+      return action.collections
     default:
       return state
   }

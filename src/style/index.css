@@ -58,13 +58,16 @@ body {
   justify-content: space-between;
   margin: 6px 0;
 }
+.mdc-list--two-line .mdc-list-item {
+  height: 84px;
+}
 .mdc-card__media {
   padding-top: 0;
   padding-bottom: 0;
 }
 .mdc-card__media-item {
   margin: 0;
-  height: 160px;
+  height: 142px;
 }
 .mdc-textfield__input {
   color: #fff;
@@ -136,4 +139,9 @@ body {
   top: 2%;
   right: 4%;
   color: #fff;
+}
+.return-fab {
+  position: fixed;
+  bottom: 4%;
+  right: 6%;
 }

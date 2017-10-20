@@ -20,7 +20,13 @@ class Header extends Component {
     }
   }
   openMenu = e => (this.menu.MDComponent.open = true)
+  closeMenu = e => (this.menu.MDComponent.open = false)
   route = path => route(path, true)
+
+  componentDidMount = () => {
+    this.closeMenu()
+  }
+  
 
   render() {
     return (
@@ -28,7 +34,7 @@ class Header extends Component {
         <Toolbar fixed className={style.toolbar}>
           <Toolbar.Row>
             <Toolbar.Section align-start>
-              <Toolbar.Title>干货集中营</Toolbar.Title>
+              <Toolbar.Title>GANK.IO</Toolbar.Title>
             </Toolbar.Section>
             <Toolbar.Section align-end>
               <Toolbar.Icon onClick={() => this.route('/search')}>

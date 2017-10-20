@@ -11,11 +11,15 @@ import {
   LOADED_VIDEO_DATA,
   LOADED_EXPAND_DATA,
   LOADED_FRONTEND_DATA,
-  LOADED_RANDOM_DATA
+  LOADED_RANDOM_DATA,
+  ADD_COLLECTION,
+  REMOVE_COLLECTION,
+  GET_COLLECTIONS,
+  SET_COLLECTIONS
 } from './type'
 
 // 获取福利数据
-export const fetchBounsData = (num) => {
+export const fetchBounsData = num => {
   return dispatch => {
     return Api.category(Type.boon, num).then(data => {
       dispatch(loadedBouns(data.results))
@@ -159,5 +163,40 @@ export const fetchRandomData = () => {
     })
   }
 }
-
-
+// 添加收藏
+export const addCollection = item => {
+  localStorage[item._id] = JSON.stringify(item)
+  return {
+    type: ADD_COLLECTION,
+    item
+  }
+}
+// 移除收藏
+export const removeCollection = item => {
+  localStorage.removeItem(item._id)
+  return {
+    type: REMOVE_COLLECTION,
+    item
+  }
+}
+// 获取全部收藏
+export const getCollections = () => {
+  const collections = []
+  const local = localStorage
+  for (let key in local) {
+    if (local.hasOwnProperty(key) && key !== 'theme') {
+      const item = JSON.parse(local[key])
+      collections.push(item)
+    }
+  }
+  return {
+    type: GET_COLLECTIONS,
+    collections
+  }
+}
+export const setCollections = collections => {
+  return {
+    type: SET_COLLECTIONS,
+    collections
+  }
+}
