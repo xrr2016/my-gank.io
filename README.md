@@ -1,6 +1,8 @@
 # 干货集中营
 
-## [Check](http://xiaoranran.site/my-gank.io)
+![](/demo/gank.gif)
+
+## [Check](138.128.200.22)
 
 ## [Api](http://gank.io/api)
 
