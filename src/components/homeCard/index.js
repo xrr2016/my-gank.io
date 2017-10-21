@@ -1,9 +1,9 @@
 import { h, Component } from 'preact'
 import { Card, Icon, Button } from 'preact-material-components'
-const w = document.getElementById('app').getBoundingClientRect().width
-const show = w <= 768
 
 const HomeCard = props => {
+  const w = document.getElementById('app').getBoundingClientRect().width
+  const show = w <= 768
   if (props.type === '福利') return ''
   let imgsrc = ''
   if (props.images && show) {

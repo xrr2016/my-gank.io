@@ -6,23 +6,24 @@ import {
   Toolbar,
   Button,
   Textfield,
-  List,
   Menu
 } from 'preact-material-components'
+import ContentLoader from 'react-content-loader'
 import ReturnFab from '../../components/return'
-
-import { fetchSearchData } from '../../actions'
+import HomeCard from '../../components/homeCard'
+import { fetchSearchData, addCollection } from '../../actions'
 
 class Search extends Component {
-
   openMenu = e => (this.menu.MDComponent.open = true)
+  addCollect = item => this.props.addCollection(item)
+
   componentDidMount = () => {
     this.props.fetchSearchData(this.props.query)
-    this.menu.MDComponent.open = false    
+    this.menu.MDComponent.open = false
   }
 
   render() {
-    const { datas } = this.props
+    const { search } = this.props
     return (
       <div>
         <Toolbar fixed className="toolbar">
@@ -50,7 +51,24 @@ class Search extends Component {
         </Toolbar>
         <LayoutGrid className="margin-top-104px">
           <LayoutGrid.Inner>
-            <LayoutGrid.Cell cols="12">aaaa</LayoutGrid.Cell>
+            <LayoutGrid.Cell cols="12">
+              {search ? (
+                search.map(item => (
+                  <HomeCard
+                    key={item._id}
+                    addCollect={this.addCollect}
+                    {...item}
+                    item={item}
+                  />
+                ))
+              ) : (
+                <div>
+                  <ContentLoader style={{marginTop: 20}} type="facebook" />
+                  <ContentLoader style={{marginTop: 20}} type="facebook" />
+                  <ContentLoader style={{marginTop: 20}} type="facebook" />
+                </div>
+              )}
+            </LayoutGrid.Cell>
             <ReturnFab path="/" />
           </LayoutGrid.Inner>
         </LayoutGrid>
@@ -60,7 +78,9 @@ class Search extends Component {
 }
 
 const mapStateToProps = state => ({
-  datas: state.search
+  search: state.search
 })
 
-export default connect(mapStateToProps, { fetchSearchData })(Search)
+export default connect(mapStateToProps, { fetchSearchData, addCollection })(
+  Search
+)

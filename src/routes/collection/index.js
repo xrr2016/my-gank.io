@@ -8,10 +8,14 @@ import Menu from 'preact-material-components/Menu'
 import Button from 'preact-material-components/Button'
 import ReturnFab from '../../components/return'
 import { getCollections, removeCollection } from '../../actions'
-const w = document.getElementById('app').getBoundingClientRect().width
-const show = w <= 768
 
 class Collection extends Component {
+  constructor () {
+    super()
+    this.w = document.getElementById('app').getBoundingClientRect().width
+    this.show = this.w <= 768
+  }
+
 
   openMenu = e => (this.menu.MDComponent.open = true)
 
@@ -45,7 +49,14 @@ class Collection extends Component {
               </Menu>
             </Menu.Anchor>
           </Toolbar.Row>
-          <Toolbar.Row />
+
+          <Toolbar.Row>
+            <Toolbar.Section><Toolbar.Icon>android</Toolbar.Icon></Toolbar.Section>
+            <Toolbar.Section><Toolbar.Icon>phone_iphone</Toolbar.Icon></Toolbar.Section>
+            <Toolbar.Section><Toolbar.Icon>explore</Toolbar.Icon></Toolbar.Section>
+            <Toolbar.Section><Toolbar.Icon>language</Toolbar.Icon></Toolbar.Section>
+            <Toolbar.Section><Toolbar.Icon>play_circle_filled</Toolbar.Icon></Toolbar.Section>
+          </Toolbar.Row>
         </Toolbar>
 
         <LayoutGrid className="margin-top-104px">
@@ -60,8 +71,8 @@ class Collection extends Component {
               ) : (
                 collections.map(item => {
                   let imgSrc = ''
-                  if (item.images && show) {
-                    imgSrc = `${item.images[0]}?imageView2/0/w/${w - 64}`
+                  if (item.images && this.show) {
+                    imgSrc = `${item.images[0]}?imageView2/0/w/${this.w - 64}`
                   }
                   return (
                     <Card>
