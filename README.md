@@ -1,8 +1,8 @@
 # 干货集中营
 
-![](/demo/gank.gif)
+用 preact 写的移动端 WebApp
 
-## [Check](138.128.200.22)
+![](/demo/gank.gif)
 
 ## [Api](http://gank.io/api)
 
